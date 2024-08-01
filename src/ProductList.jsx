@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './ProductList.css'
 import { addItem } from './CreatSlice';
@@ -235,7 +235,6 @@ function ProductList() {
         fontSize: '30px',
         textDecoration: 'none',
     }
-    const [addedToCart, setAddedToCart] = useState({});
     const [showCart, setShowCart] = useState(false);
 
     const dispatch = useDispatch();
@@ -245,10 +244,6 @@ function ProductList() {
 
     const handleAddToCart = (product) => {
         dispatch(addItem(product));
-        setAddedToCart((prevState) => ({
-            ...prevState,
-            [product.name]: true,
-        }))
         setDisabledProducts([...disabledProducts, product.name]); // Mark the product as disabled
     };
     const showCartItems = () => {
@@ -267,7 +262,7 @@ function ProductList() {
         const count = cartItems.reduce((total, item) => total + item.quantity, 0);
         return count;
     };
-    const Navbar = ({ setCurrentScreen }) => {
+    const Navbar = () => {
         return (
             <div className="navbar" style={styleObj}>
                 <div className="tag">

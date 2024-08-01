@@ -1,29 +1,9 @@
-import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addItem, removeItem, updateQuantity } from './CreatSlice';
+import {  removeItem, updateQuantity } from './CreatSlice';
 import './CartItem.css';
 
 const CartItem = ({ onContinueShopping }) => {
-    const styleObj = {
-        backgroundColor: '#4CAF50',
-        color: '#fff!important',
-        padding: '15px',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignIems: 'center',
-        fontSize: '20px',
-    }
-    const styleObjUl = {
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        width: '1100px',
-    }
-    const styleA = {
-        color: 'white',
-        fontSize: '30px',
-        textDecoration: 'none',
-    }
+    
     const cartItems = useSelector(state => state.cart.items);
     const dispatch = useDispatch();
 
@@ -34,7 +14,7 @@ const CartItem = ({ onContinueShopping }) => {
         return cost;
     };
 
-    const handleContinueShopping = (e) => {
+    const handleContinueShopping = () => {
         onContinueShopping();
     };
 
@@ -55,7 +35,7 @@ const CartItem = ({ onContinueShopping }) => {
         dispatch(removeItem(item.name));
     };
 
-    const handleCheckoutShopping = (e) => {
+    const handleCheckoutShopping = () => {
         alert('Coming Soon...');
     };
 
@@ -88,7 +68,7 @@ const CartItem = ({ onContinueShopping }) => {
         </div>
         <div style={{ marginTop: '20px', color: 'black' }} className='total_cart_amount'></div>
         <div className="continue_shopping_btn">
-            <button className="get-started-button" onClick={(e) => handleContinueShopping(e)}>Continue Shopping</button>
+            <button className="get-started-button" onClick={() => handleContinueShopping()}>Continue Shopping</button>
             <br />
             <button className="get-started-button1" onClick={() => handleCheckoutShopping()}>Checkout</button>
         </div>
